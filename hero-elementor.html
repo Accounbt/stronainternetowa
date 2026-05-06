@@ -1,0 +1,189 @@
+<section class="ci-hero-section">
+  <style>
+    .ci-hero-section, .ci-hero-section * { box-sizing: border-box; }
+    .ci-hero-section {
+      --ci-bg-1:#02060D;
+      --ci-bg-2:#030A12;
+      --ci-bg-3:#050B14;
+      --ci-accent:#00AEEA;
+      --ci-text:#ffffff;
+      --ci-muted:rgba(255,255,255,.72);
+      --ci-card:rgba(5,15,28,.68);
+      --ci-green:#20D68A;
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      color: var(--ci-text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(1200px 600px at 92% 55%, rgba(0,140,255,.16), transparent 60%),
+        radial-gradient(850px 500px at 68% 82%, rgba(0,174,234,.18), transparent 62%),
+        linear-gradient(115deg, rgba(0,174,234,.14) 0%, transparent 22%),
+        linear-gradient(180deg, var(--ci-bg-1) 0%, var(--ci-bg-2) 52%, var(--ci-bg-3) 100%);
+      isolation: isolate;
+    }
+    .ci-hero-section::before,
+    .ci-hero-section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .ci-hero-section::before {
+      background:
+        repeating-linear-gradient(90deg, rgba(0,174,234,.06) 0 1px, transparent 1px 90px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 1px, transparent 1px 90px);
+      opacity: .35;
+      mix-blend-mode: screen;
+    }
+    .ci-hero-section::after {
+      background:
+        radial-gradient(circle at 92% 16%, rgba(0,174,234,.52) 0 2px, transparent 3px),
+        radial-gradient(circle at 96% 22%, rgba(0,174,234,.5) 0 2px, transparent 3px),
+        radial-gradient(circle at 88% 70%, rgba(0,174,234,.5) 0 2px, transparent 3px),
+        linear-gradient(160deg, transparent 56%, rgba(0,174,234,.34) 57%, transparent 58%),
+        linear-gradient(160deg, transparent 62%, rgba(0,174,234,.24) 63%, transparent 64%),
+        linear-gradient(160deg, transparent 68%, rgba(0,174,234,.18) 69%, transparent 70%);
+      opacity: .9;
+      filter: blur(.2px);
+    }
+
+    .ci-hero-wrap {max-width:1760px; margin:0 auto; padding:38px 48px 44px; position:relative; z-index:1;}
+
+    .ci-hero-top {display:flex; align-items:center; justify-content:space-between; gap:24px; margin-bottom:58px;}
+    .ci-hero-logo {display:flex; align-items:center; gap:16px; font-size:49px; font-weight:700; letter-spacing:-.02em;}
+    .ci-hero-logo-mark {width:58px; height:58px; position:relative; border-radius:14px; background:linear-gradient(145deg, rgba(0,174,234,.18), rgba(0,174,234,0));}
+    .ci-hero-logo-mark svg{width:100%;height:100%;display:block}
+    .ci-hero-nav {display:flex; align-items:center; gap:22px; flex-wrap:wrap; justify-content:flex-end;}
+    .ci-hero-nav a {color:#fff; text-decoration:none; font-size:41px; opacity:.94; padding:10px 4px;}
+    .ci-hero-nav a:hover{opacity:1;color:#dff6ff}
+    .ci-hero-nav .ci-hero-cta-nav{padding:17px 36px;border:1px solid rgba(0,174,234,.95);border-radius:10px;color:var(--ci-accent)}
+
+    .ci-hero-main {display:grid; grid-template-columns:52% 48%; align-items:start; gap:18px;}
+    .ci-hero-left {padding:8px 0 0 56px;}
+    .ci-hero-pill{display:inline-flex;align-items:center;gap:11px;padding:12px 24px;border:1px solid rgba(0,174,234,.8);border-radius:999px;color:var(--ci-accent);font-weight:600;font-size:34px;background:rgba(6,22,44,.35);margin-bottom:34px}
+    .ci-hero-h1{font-size:105px;line-height:1.08;letter-spacing:-.03em;margin:0 0 24px;font-weight:850;max-width:1120px}
+    .ci-hero-h1 .ci-hero-accent{color:var(--ci-accent)}
+    .ci-hero-sub{margin:0 0 42px;color:var(--ci-muted);font-size:42px;line-height:1.55;max-width:1030px}
+    .ci-hero-buttons{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:30px}
+    .ci-hero-btn{height:74px;padding:0 28px;border-radius:10px;border:1px solid rgba(0,174,234,.95);display:inline-flex;align-items:center;justify-content:space-between;gap:16px;text-decoration:none;font-size:34px;font-weight:500;transition:.28s ease;min-width:520px}
+    .ci-hero-btn-primary{background:linear-gradient(135deg, #08b7f1, #0c9ddd);color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.06) inset,0 14px 28px rgba(0,174,234,.35)}
+    .ci-hero-btn-secondary{background:rgba(0,0,0,.15);color:#fff}
+    .ci-hero-btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,174,234,.32)}
+    .ci-hero-meta{display:flex;align-items:center;gap:0;flex-wrap:wrap;color:rgba(255,255,255,.93);font-size:39px}
+    .ci-hero-meta-item{display:flex;align-items:center;gap:12px;padding:0 20px}
+    .ci-hero-meta-item + .ci-hero-meta-item{border-left:1px solid rgba(255,255,255,.25)}
+
+    .ci-hero-right{position:relative; min-height:760px; padding:20px 16px 0 6px;}
+    .ci-card{position:absolute;background:var(--ci-card);backdrop-filter:blur(18px);border:1px solid rgba(0,174,234,.27);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.09) inset, 0 0 40px rgba(0,174,234,.2);overflow:hidden;transition:.3s ease}
+    .ci-card::after{content:"";position:absolute;inset:0;background:linear-gradient(125deg, rgba(255,255,255,.16), transparent 26%, transparent 70%, rgba(255,255,255,.12));pointer-events:none}
+    .ci-card:hover{transform:translateY(-4px)}
+    .ci-c1{top:0;left:40px;width:590px;height:250px;padding:28px 28px 24px}
+    .ci-c2{top:280px;left:0;width:520px;height:388px;padding:26px 20px 16px}
+    .ci-c3{top:272px;right:0;width:284px;height:304px;padding:24px}
+    .ci-c4{top:590px;right:0;width:284px;height:220px;padding:24px}
+
+    .ci-card-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:600;margin-bottom:20px}
+    .ci-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:center}
+    .ci-step{display:grid;justify-items:center;gap:8px;font-size:17px;text-align:center;color:rgba(255,255,255,.92)}
+    .ci-step-box{width:74px;height:74px;border-radius:18px;background:linear-gradient(170deg, rgba(44,121,201,.28), rgba(9,20,35,.88));display:grid;place-items:center;border:1px solid rgba(97,164,255,.3)}
+    .ci-arrow{position:absolute;top:50%;right:-9px;transform:translateY(-50%);color:var(--ci-accent)}
+
+    .ci-activity-row{display:grid;grid-template-columns:46px 1fr auto;gap:12px;align-items:center;padding:13px 0;border-top:1px solid rgba(255,255,255,.08)}
+    .ci-activity-row:first-of-type{border-top:0}
+    .ci-miniicon{width:46px;height:46px;border-radius:12px;background:linear-gradient(160deg, rgba(44,121,201,.3), rgba(10,24,41,.9));display:grid;place-items:center;border:1px solid rgba(88,160,255,.24)}
+    .ci-task{font-size:17px}
+    .ci-time{font-size:13px;color:rgba(255,255,255,.7)}
+    .ci-status{font-size:14px;color:var(--ci-green);padding:8px 12px;border-radius:999px;background:rgba(12,80,55,.35);border:1px solid rgba(32,214,138,.25)}
+
+    .ci-big{font-size:64px;color:var(--ci-accent);font-weight:700;line-height:1;margin:14px 0 10px}
+    .ci-small{font-size:16px;color:rgba(255,255,255,.88);line-height:1.45}
+    .ci-chart{margin-top:12px;height:68px}
+
+    .ci-integrations{display:flex;align-items:center;gap:11px;margin:14px 0 10px}
+    .ci-tool{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.07);display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.2)}
+
+    @media (max-width:1440px){
+      .ci-hero-logo{font-size:43px}.ci-hero-nav a{font-size:34px}.ci-hero-h1{font-size:84px}.ci-hero-sub{font-size:34px}.ci-hero-btn{font-size:29px;min-width:430px}.ci-hero-meta{font-size:30px}
+      .ci-c1{width:530px}.ci-c2{width:480px}
+    }
+    @media (max-width:1180px){
+      .ci-hero-main{grid-template-columns:1fr}.ci-hero-left{padding-left:12px}.ci-hero-right{min-height:0;padding:8px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+      .ci-card{position:relative;top:auto;left:auto;right:auto;width:auto;height:auto}.ci-c1{grid-column:1/-1}.ci-c2{grid-column:1}.ci-c3,.ci-c4{grid-column:2}
+      .ci-hero-h1{font-size:66px}.ci-hero-sub{font-size:25px;max-width:100%}
+      .ci-hero-nav a{font-size:24px}
+    }
+    @media (max-width:780px){
+      .ci-hero-wrap{padding:24px 18px 26px}.ci-hero-top{margin-bottom:28px;align-items:flex-start}.ci-hero-logo{font-size:28px}.ci-hero-logo-mark{width:44px;height:44px}
+      .ci-hero-nav a{display:none}.ci-hero-nav .ci-hero-cta-nav{display:inline-flex;font-size:18px;padding:11px 18px}.ci-hero-nav::before{content:"Menu";display:inline-flex;color:#fff;border:1px solid rgba(255,255,255,.24);padding:10px 16px;border-radius:10px;margin-right:8px}
+      .ci-hero-pill{font-size:14px;padding:9px 16px;margin-bottom:20px}.ci-hero-h1{font-size:42px;line-height:1.12}.ci-hero-sub{font-size:19px;margin-bottom:25px}
+      .ci-hero-buttons{flex-direction:column}.ci-hero-btn{width:100%;min-width:0;font-size:21px;height:62px}
+      .ci-hero-meta{font-size:18px;gap:10px}.ci-hero-meta-item{padding:0;border-left:0!important}
+      .ci-hero-right{grid-template-columns:1fr}.ci-c2,.ci-c3,.ci-c4{grid-column:1}
+    }
+  </style>
+
+  <div class="ci-hero-wrap">
+    <header class="ci-hero-top">
+      <div class="ci-hero-logo">
+        <span class="ci-hero-logo-mark">
+          <svg viewBox="0 0 60 60" fill="none"><path d="M18 15c-5 0-9 4-9 9v12c0 5 4 9 9 9h14v-8H20c-2 0-4-2-4-4V27c0-2 2-4 4-4h12v-8H18z" fill="#00AEEA"/><path d="M37 23h8v22h-8z" fill="#00AEEA"/><circle cx="41" cy="15" r="5" fill="#fff"/></svg>
+        </span>
+        <span>Cyfrowa Inteligencja</span>
+      </div>
+      <nav class="ci-hero-nav">
+        <a href="#">Usługi ▾</a><a href="#">Case studies</a><a href="#">O nas</a><a href="#">Blog</a><a href="#">Kontakt</a><a class="ci-hero-cta-nav" href="#">Umów konsultację</a>
+      </nav>
+    </header>
+
+    <div class="ci-hero-main">
+      <div class="ci-hero-left">
+        <div class="ci-hero-pill"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5L12 2z" fill="#00AEEA"/></svg>AUTOMATYZACJA AI DLA FIRM</div>
+        <h1 class="ci-hero-h1">Mniej chaosu.<br>Więcej <span class="ci-hero-accent">automatyzacji AI.</span><br>Więcej czasu na <span class="ci-hero-accent">rozwój firmy.</span></h1>
+        <p class="ci-hero-sub">Pomagamy firmom automatyzować obsługę klienta, sprzedaż, marketing i procesy biurowe dzięki praktycznym rozwiązaniom AI, które przynoszą realne efekty.</p>
+        <div class="ci-hero-buttons">
+          <a href="#" class="ci-hero-btn ci-hero-btn-primary">Umów bezpłatną konsultację <svg width="31" height="20" viewBox="0 0 31 20" fill="none"><path d="M1 10h26" stroke="white" stroke-width="2.5"/><path d="M20 2l8 8-8 8" stroke="white" stroke-width="2.5"/></svg></a>
+          <a href="#" class="ci-hero-btn ci-hero-btn-secondary">Zobacz, co można zautomatyzować <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="white" stroke-width="2"/><path d="M15 12l10 6-10 6v-12z" stroke="white" stroke-width="2"/></svg></a>
+        </div>
+        <div class="ci-hero-meta">
+          <div class="ci-hero-meta-item"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="#00AEEA" stroke-width="2.6"/><path d="M11 18l5 5 9-11" stroke="#00AEEA" stroke-width="2.8"/></svg>bez technicznego żargonu</div>
+          <div class="ci-hero-meta-item"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="#00AEEA" stroke-width="2.6"/><path d="M11 18l5 5 9-11" stroke="#00AEEA" stroke-width="2.8"/></svg>dopasowane do firmy</div>
+          <div class="ci-hero-meta-item"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="#00AEEA" stroke-width="2.6"/><path d="M11 18l5 5 9-11" stroke="#00AEEA" stroke-width="2.8"/></svg>realne oszczędności czasu</div>
+        </div>
+      </div>
+
+      <div class="ci-hero-right">
+        <article class="ci-card ci-c1">
+          <div class="ci-card-title"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M8 11a3 3 0 100-6 3 3 0 000 6zM16 12a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM3 19c0-2.5 2.2-4.5 5-4.5s5 2 5 4.5M12 19c0-2 1.7-3.5 4-3.5s4 1.5 4 3.5" stroke="#00AEEA" stroke-width="1.9"/></svg>Przepływ leadów</div>
+          <div class="ci-flow">
+            <div class="ci-step"><div class="ci-step-box">👥</div>Nowy lead</div>
+            <div class="ci-step"><div class="ci-step-box">◈</div>AI kwalifikuje</div>
+            <div class="ci-step"><div class="ci-step-box">👤◉</div>CRM</div>
+            <div class="ci-step"><div class="ci-step-box">✎</div>Zadanie dla handlowca</div>
+          </div>
+        </article>
+
+        <article class="ci-card ci-c2">
+          <div class="ci-card-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M2 13h4l2-8 4 14 3-8h7" stroke="#00AEEA" stroke-width="2"/></svg>Aktywność AI</div>
+          <div class="ci-activity-row"><div class="ci-miniicon">💬</div><div><div class="ci-task">Odpowiedz na zapytanie klienta</div><div class="ci-time">2 min temu</div></div><div class="ci-status">Zrealizowane ✓</div></div>
+          <div class="ci-activity-row"><div class="ci-miniicon">📄</div><div><div class="ci-task">Przygotuj ofertę handlową</div><div class="ci-time">7 min temu</div></div><div class="ci-status">Zrealizowane ✓</div></div>
+          <div class="ci-activity-row"><div class="ci-miniicon">☑</div><div><div class="ci-task">Podsumowanie rozmowy</div><div class="ci-time">15 min temu</div></div><div class="ci-status">Zrealizowane ✓</div></div>
+        </article>
+
+        <article class="ci-card ci-c3">
+          <div class="ci-card-title"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#00AEEA" stroke-width="2"/><path d="M12 7v6l4 3" stroke="#00AEEA" stroke-width="2"/></svg>Oszczędność czasu</div>
+          <div class="ci-big">86h</div>
+          <div class="ci-small">miesięcznie<br>Dzięki automatyzacjom AI</div>
+          <svg class="ci-chart" viewBox="0 0 220 70" fill="none"><path d="M4 60h31l14-7 17 3 20-12 21 5 16-13 17 6 14-14 19 0 24-26" stroke="#00AEEA" stroke-width="3"/><circle cx="213" cy="2" r="4" fill="#87ecff"/></svg>
+        </article>
+
+        <article class="ci-card ci-c4">
+          <div class="ci-card-title"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="M10 14l4-4M8 8l-2 2a4 4 0 105.7 5.6l2-2M16 16l2-2a4 4 0 10-5.7-5.6l-2 2" stroke="#00AEEA" stroke-width="2"/></svg>Integracje</div>
+          <div class="ci-integrations"><span class="ci-tool">AI</span><span class="ci-tool">S</span><span class="ci-tool">H</span><span class="ci-tool">SF</span><span style="font-size:40px;font-weight:700">+15</span></div>
+          <div class="ci-small">i wiele więcej</div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
